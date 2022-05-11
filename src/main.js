@@ -22,5 +22,9 @@ axios.defaults.baseURL =
 //   render: h => h(App)
 // }).$mount('#app');
 
+// var jwt = localStorage.getItem("jwt");
+// if (jwt) {
+//   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
+// }
 
 createApp(App).use(router).mount('#app')
