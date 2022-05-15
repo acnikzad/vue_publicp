@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <GoogleMap />
+    <GoogleMap mapData="hello" />
 
     <div class="reviews-index">
       <div v-for="review in reviews">
@@ -15,7 +15,7 @@
 
 <script>
 // @ is an alias to /src
-import * as VueGoogleMaps from "vue2-google-maps";
+// import * as VueGoogleMaps from "vue2-google-maps";
 import Map from '../components/GoogleMap.vue';
 import axios from "axios";
 
