@@ -1,74 +1,43 @@
 <template>
-  <div>
-    <div>
-      <h2>Search and add a pin</h2>
-      <label>
-        <gmap-autocomplete
-          @place_changed="setPlace">
-        </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
-      </label>
-      <br/>
-
-    </div>
-    <br>
-    <gmap-map
-      :center="center"
-      :zoom="12"
-      style="width:100%;  height: 400px;">
-      <gmap-marker
-        :key="index"
-        v-for="(m, index) in markers"
-        :position="m.position"
-        @click="center=m.position"
-      ></gmap-marker>
-    </gmap-map>
-  </div>
+  <GoogleMap api-key="AIzaSyC8FHHNjdqdpY9kzMeSzSKqRiiKEBa-Cyk" style="width: 100%; height: 750px" :center="center" :zoom="13">
+    <Marker :options="markerOptions" />
+  </GoogleMap>
 </template>
 
 <script>
-export default {
-  name: "GoogleMap",
-  data() {
-    return {
-      // default to Montreal to keep it simple
-      // change this to whatever makes sense
-      center: { lat: 45.508, lng: -73.587 },
-      markers: [],
-      places: [],
-      currentPlace: null
-    };
+
+import { defineComponent } from "vue";
+import { GoogleMap, Marker } from "vue3-google-map";
+import axios from "axios";
+import GmapCustomMarker from 'vue3-gmap-custom-marker';
+
+export default defineComponent({
+  components: { GoogleMap, Marker },
+  setup() {
+    const center = { lat: 38.5816, lng: -121.4944 };
+    const markerOptions = { position: center, label: "L", title: "LADY LIBERTY" };
+    const parks = {}
+
+    return { center, markerOptions };
   },
 
-  mounted() {
-    this.geolocate();
-  },
-
-  methods: {
-    // receives a place object via the autocomplete component
-    setPlace(place) {
-      this.currentPlace = place;
-    },
-    addMarker() {
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
-        };
-        this.markers.push({ position: marker });
-        this.places.push(this.currentPlace);
-        this.center = marker;
-        this.currentPlace = null;
-      }
-    },
-    geolocate: function() {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-      });
-    }
-  }
-};
+});
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+/*h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}*/
+</style>

@@ -1,11 +1,6 @@
 <template>
   <div class="home">
-    <!-- <div class="users-index">
-      <div v-for="user in users">
-        <p> First Name: {{user.first_name}}</p>
-        <p> Last Name: {{user.last_name}}</p>
-      </div>
-    </div> -->
+    <GoogleMap />
 
     <div class="reviews-index">
       <div v-for="review in reviews">
@@ -23,7 +18,6 @@
 import * as VueGoogleMaps from "vue2-google-maps";
 import Map from '../components/GoogleMap.vue';
 import axios from "axios";
-const startMarker = ('http://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-Free-PNG-Image.png');
 
 export default {
   data: function() {
