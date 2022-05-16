@@ -1,15 +1,26 @@
 <template>
   <div class="home">
-    <GoogleMap mapData="hello" />
+    <GoogleMap />
 
-    <div class="reviews-index">
+    <!-- <div class="reviews-index">
       <div v-for="review in reviews">
-        <p> Bathroom Location: {{review.bathroom.park}}</p>
+        <p> Bathroom Location: {{review.bathroom.label}}</p>
         <p> Comment: {{review.comment}}</p>
         <p> Commenter: "{{review.user.first_name}} {{review.user.last_name}}"</p>
       </div>
+    </div> -->
+    <div class="reviews-new">
+      <h1>{{ message }}</h1>
+      <form v-on:submit.prevent="makeReview()">
+        <p>Bathroom Location: <input type="text" v-model="name"></p>
+        <p>Comment: <input type="text" v-model="description"></p>
+        <p>Would you return? <input type="text" v-model="price"></p>
+        <p>Rating out of 5 stars: <input type="text" v-model="price"></p>
+        <button>Make a new product</button>
+      </form>
     </div>
-  
+
+
   </div>
 </template>
 
