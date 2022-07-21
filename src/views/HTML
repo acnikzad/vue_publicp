@@ -1,0 +1,98 @@
+HTML
+What is an attribute in HTML?
+
+What is Marquee in HTML?
+  HTML attributes can be used to change the color, size, and other features of HTML elements. For example, you can use an attribute to change the color or size of a font for a text element or the width and height for an image element.
+
+What is Semantic HTML? and how does it work?
+  Semantic HTML refers to syntax that makes the HTML more comprehensible by better defining the different sections and layout of web pages. It makes web pages more informative and adaptable, allowing browsers and search engines to better interpret content. 
+  Header, Body, Footer. 
+  Article of Section
+
+How do you display a table on an HTML webpage?
+  <table>
+    <th> - header
+    <tr> - row
+    <td> - cell
+    <caption> - table caption
+  </table>
+
+What is SVG in HTML?
+  Scalable Vector Graphics (SVG) are an XML-based markup language for describing two-dimensional based vector graphics.
+
+In HTML, how do you separate a section of txt?
+  <br>
+  <blockquote>
+  <p>
+
+Difference between HTML and HTML5. New tags in HTML5?
+  5 supports audio video without flash player
+  Allows JS to run in the background
+  Allows drag and drop effects
+  Allows to draw more shapes like circles and rectangles
+
+
+
+  <audio>
+  <video>
+  <nav>
+  <header>
+  <footer>
+
+
+
+
+CSS
+What is the best way to include CSS Styling in HTML?
+
+Mention the different types of CSS Selectors.
+
+What are Sass, Less and Stylus?
+
+Explain box sizing property
+
+What are the different ways to hide an element using CSS?
+
+What does Important in CSS mean?
+
+What are CSS Sprites?
+
+Explain CSS positioning. (Static, sticky, relative, absolute)
+
+
+
+Javascript
+
+What are the various Data Types in Javascript?
+
+What is a callback in Javascript?
+
+Whats teh difference between Function Declaration and Function Expression?
+
+What is Hoisting?
+
+What do you understand about cookies in Javascript?
+
+What are closures in Javascript?
+
+What is the difference between undefined, undeclared and null in Javascript?
+
+Mention string methods
+
+
+
+Given an array of numbers, write a function that returns a new array whose values are the original array’s value doubled.
+
+Input: [4, 2, 5, 99, -4]
+Output: [8, 4, 10, 198, -8]
+
+array = [4, 5, 6, 7]
+array2 =  []
+x = 0
+
+if x <= array.length
+  array[x] * 2
+  x += 2
+
+
+

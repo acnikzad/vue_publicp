@@ -8,7 +8,8 @@
               :closeclick="false"
               :opened="openMarkerID == location.id">
               <div>
-                {{ location.label }}
+                <h3>{{ location.label }}</h3>
+                <!-- {{ review.comment }} -->
               </div>
             </InfoWindow >
           </Marker>
@@ -65,31 +66,43 @@ export default defineComponent({
       if (num === result.length) {
         done.value = !done.value
       }
-      // console.log(data, 'this is done')
     })
   });
   })
 
-  // watch(()=>)
   function openMarker (id) {
     openMarkerID.value = id
-    const loc = locations.value.filter((l) => l.id == id)
-    console.log(loc)
-    console.log(openMarkerID.value, id)
-  }
+    const loc = locations.value.filter((l) => l.id == id);
+    axios.get(`/api/bathrooms/${id}`).then(response => {
+          console.log('bathroom details ...', response.data);
+          if (response.data) {
+            this.currentBathroom = response.data;
+            if (response.data.courses && response.data.courses.length) {
+              this.students_courses = response.data.courses;
+              // this.courses_students = response.data.students;
+            }
+            if (response.data.students && response.data.students.length) {
+              this.courses_students = response.data.students;
+              // this.courses_students = response.data.students;
+            }
+          }
+        });
 
+
+    // console.log(loc)
+    console.log(id)
+
+  }
     return { 
       openMarker,
       openMarkerID,
       done, 
       center, 
       locations,
+
+      currentBathroom: {},
       };
   },
-  // async mounted() {
-  //   await this.$nextTick();
-  //   console.log(this.mapData)
-  // }
 });
 </script>
 

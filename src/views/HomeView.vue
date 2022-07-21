@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <GoogleMap />
+    <GoogleMap :bathroomReviews="bathroomReviews"/>
 
     <!-- <div class="reviews-index">
       <div v-for="review in reviews">
@@ -10,7 +10,6 @@
       </div>
     </div> -->
     <div class="reviews-new">
-      <h1>{{ message }}</h1>
       <form v-on:submit.prevent="makeReview()">
         <p>Bathroom Location: <input type="text" v-model="name"></p>
         <p>Comment: <input type="text" v-model="description"></p>
@@ -31,6 +30,9 @@ import Map from '../components/GoogleMap.vue';
 import axios from "axios";
 
 export default {
+  components: {
+    Map,
+  },
   data: function() {
     return {
       reviews: [],
@@ -71,5 +73,11 @@ export default {
     });
     
   },
+   methods: {
+      showReviews: function() {
+        console.log(location.id)
+      }
+
+    }
 };
 </script>
