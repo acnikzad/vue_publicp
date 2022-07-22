@@ -11,6 +11,9 @@
                 <h3>{{ location.label }}</h3>
                 <!-- {{ review.comment }} -->
               </div>
+              <div v-for="review in reviews">
+                <h4>{{review}}</h4>
+              </div>
             </InfoWindow >
           </Marker>
         </MarkerCluster>
@@ -46,6 +49,7 @@ export default defineComponent({
     
 
   onMounted(()=> {
+
     axios.get(`/api/bathrooms`, {
     params: {},
     headers: {
@@ -70,21 +74,17 @@ export default defineComponent({
   });
   })
 
+
   function openMarker (id) {
     openMarkerID.value = id
     const loc = locations.value.filter((l) => l.id == id);
     axios.get(`/api/bathrooms/${id}`).then(response => {
           console.log('bathroom details ...', response.data);
+          this.reviews = [];
           if (response.data) {
-            this.currentBathroom = response.data;
-            if (response.data.courses && response.data.courses.length) {
-              this.students_courses = response.data.courses;
-              // this.courses_students = response.data.students;
-            }
-            if (response.data.students && response.data.students.length) {
-              this.courses_students = response.data.students;
-              // this.courses_students = response.data.students;
-            }
+            this.reviews = response.data.reviews;
+            console.log(this.reviews)
+
           }
         });
 
@@ -101,9 +101,12 @@ export default defineComponent({
       locations,
 
       currentBathroom: {},
+      reviews: [],
       };
   },
 });
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
