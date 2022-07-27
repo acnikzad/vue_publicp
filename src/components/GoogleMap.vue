@@ -8,11 +8,13 @@
               :closeclick="false"
               :opened="openMarkerID == location.id">
               <div>
-                <h3>{{ location.label }}</h3>
+                <h2>{{ location.label }}</h2>
                 <!-- {{ review.comment }} -->
               </div>
               <div v-for="review in reviews">
-                <h4>{{review}}</h4>
+                <h4>Comment: {{review.comment}}</h4>
+                <h4>Cleanliness: {{review.cleanliness}}/5</h4>
+                <h4>Reviewer: {{review.user.first_name}} {{review.user.last_name}}</h4>
               </div>
             </InfoWindow >
           </Marker>
@@ -79,13 +81,9 @@ export default defineComponent({
     openMarkerID.value = id
     const loc = locations.value.filter((l) => l.id == id);
     axios.get(`/api/bathrooms/${id}`).then(response => {
-          console.log('bathroom details ...', response.data);
-          this.reviews = [];
-          if (response.data) {
-            this.reviews = response.data.reviews;
-            console.log(this.reviews)
-
-          }
+      console.log('bathroom details ...', response.data);
+      this.reviews = response.data.reviews;
+      console.log(this.reviews)
         });
 
 
