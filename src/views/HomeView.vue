@@ -11,13 +11,13 @@
     </div> -->
     <div class="reviews-new">
       <form name="reviewForm" @submit.prevent="reviewForm">
-        <select id="bathrooms" name="bathroom" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <select id="bathrooms" name="bathroom" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="bathroomID">
           <option value="" disabled selected>Select bathroom</option>
-          <option v-for="bathroom in bathrooms" :value="bathroom.id">{{bathroom.label}}</option>
+          <option id="theBathroom" v-for="bathroom in bathrooms" :value="bathroom.id">{{bathroom.label}}</option>
         </select>
-        <p>Comment: <input type="text" v-model="comment"></p>
-        <p>Would you return? <input type="text" v-model="price"></p>
-        <p>Rating out of 5 stars: <input type="text" v-model="price"></p>
+        <p>Comment:</p> <textarea type="text" rows="4" cols="50" v-model="comment"></textarea>
+        <p>Would you return? <input type="text" v-model="wouldReturn"></p>
+        <p>Rating out of 5 stars: <input type="number" v-model="rating"></p>
         <button class="btn btn-primary btn-lg" id="submitButton" type="submit" value="Submit" v-on:click="reviewForm()">Submit Review</button>
       </form>
     </div>
@@ -42,6 +42,10 @@ export default {
       users: [],
       bathrooms:[],
       currentBathroom: [],
+
+      bathroomID:"",
+      wouldReturn:"",
+      rating:"",
   };
 },
 
@@ -92,8 +96,20 @@ export default {
 
       reviewForm: function(event) {
         event.preventDefault();
-        const {bathroomID, comment} = this;
-        console.log("Creating the review...", bathroomID, comment)
+        const {bathroomID, comment, wouldReturn, rating} = this;
+        console.log("Creating the review...", bathroomID, comment, wouldReturn, rating);
+        let params = {
+          bathroom_id: this.bathroomID,
+          comment: this.comment,
+          return: this.wouldReturn,
+          rating: this.rating
+        };
+
+        axios.post("/api/reviews", params).then(response => {
+        this.reviews.push(response.data);
+        this.newTeacherFirstName = "";
+        this.newTeacherLastName = "";
+      })
 
 
       }
