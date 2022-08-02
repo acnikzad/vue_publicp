@@ -10,15 +10,15 @@
       </div>
     </div> -->
     <div class="reviews-new">
-      <form v-on:submit.prevent="createReview()">
+      <form name="reviewForm" @submit.prevent="reviewForm">
         <select id="bathrooms" name="bathroom" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
           <option value="" disabled selected>Select bathroom</option>
           <option v-for="bathroom in bathrooms" :value="bathroom.id">{{bathroom.label}}</option>
-          </select>
-        <p>Comment: <input type="text" v-model="description"></p>
+        </select>
+        <p>Comment: <input type="text" v-model="comment"></p>
         <p>Would you return? <input type="text" v-model="price"></p>
         <p>Rating out of 5 stars: <input type="text" v-model="price"></p>
-        <button class="btn btn-primary btn-lg" id="submitButton" type="submit" value="Submit" v-on:click="createReview()">Submit Review</button>
+        <button class="btn btn-primary btn-lg" id="submitButton" type="submit" value="Submit" v-on:click="reviewForm()">Submit Review</button>
       </form>
     </div>
 
@@ -90,10 +90,10 @@ export default {
         }
       },
 
-      createReview: function(event) {
+      reviewForm: function(event) {
         event.preventDefault();
-        console.log("Creating the review...")
-        const {bathroomID} = this;
+        const {bathroomID, comment} = this;
+        console.log("Creating the review...", bathroomID, comment)
 
 
       }
