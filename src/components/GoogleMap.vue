@@ -9,13 +9,11 @@
               :opened="openMarkerID == location.id">
               <div>
                 <h2>{{ location.label }}</h2>
-                <h4>Average Rating: {{average_rating}}</h4>
-
-                <!-- {{ review.comment }} -->
+                <h4>Average Rating: {{average_rating}}/10</h4>
               </div>
               <div v-for="review in reviews">
                 <h4>Comment: {{review.comment}}</h4>
-                <h4>Cleanliness: {{review.cleanliness}}/5</h4>
+                <h4>Rating: {{review.rating}}/10</h4>
                 <h4>Reviewer: {{review.user.first_name}} {{review.user.last_name}}</h4>
                 <hr>
               </div>
@@ -81,14 +79,17 @@ export default defineComponent({
 
 
   function openMarker (id) {
+    // this.reviews = [];
+    // this.average_rating = "";
     openMarkerID.value = id
     const loc = locations.value.filter((l) => l.id == id);
     axios.get(`/api/bathrooms/${id}`).then(response => {
       console.log('bathroom details ...', response.data);
       this.reviews = response.data.reviews;
       this.average_rating = response.data.average_rating;
+      this.average_rating = this.average_rating;
       console.log(this.reviews);
-      console.log(this.average_rating);
+      console.log("this parks average rating is: ", this.average_rating);
         });
 
 

@@ -3,6 +3,9 @@
     <GoogleMap />
   </div>
   <router-view/>
+  
+
+  
 </template>
 
 <script>

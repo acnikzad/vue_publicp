@@ -43,9 +43,10 @@ export default {
       bathrooms:[],
       currentBathroom: [],
 
-      bathroomID:"",
-      wouldReturn:"",
-      rating:"",
+      bathroomID: "",
+      wouldReturn: "",
+      rating: "",
+      average_rating: "",
   };
 },
 
@@ -102,7 +103,7 @@ export default {
           bathroom_id: this.bathroomID,
           comment: this.comment,
           return: this.wouldReturn,
-          rating: this.rating
+          rating: this.average_rating,
         };
 
         axios.post("/api/reviews", params).then(response => {

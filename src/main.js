@@ -3,6 +3,9 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import axios from 'axios';
+import "./assets/css/nucleo-icons.css";
+import "./assets/css/nucleo-svg.css";
+import MaterialDashboard from "./material-dashboard";
 import loader from '@googlemaps/js-api-loader';
 // import * as VueGoogleMaps from 'vue2-google-maps';
 // import Webpack from ''
@@ -25,4 +28,4 @@ axios.defaults.baseURL =
 //   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
 // }
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(MaterialDashboard).mount('#app')

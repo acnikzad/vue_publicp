@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Map from '../components/GoogleMap.vue';
+import HomeView2 from '../views/HomeView2.vue'
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/map',
     name: 'map',
     component: Map
+  },
+    {
+    path: '/home2',
+    name: 'home2',
+    component: HomeView2
   },
   {
     path: '/about',
